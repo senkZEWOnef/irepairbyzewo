@@ -31,7 +31,7 @@ export default function SignInPage() {
       });
 
       if (result?.error) {
-        setError("Credenciales inválidas");
+        setError("Invalid credentials");
       } else {
         router.push("/");
       }
@@ -59,10 +59,10 @@ export default function SignInPage() {
           }
         } else {
           const data = await response.json();
-          setError(data.message || "Registro fallido");
+          setError(data.message || "Registration failed");
         }
-      } catch {
-        setError("Algo salió mal");
+      } catch (error) {
+        setError("Something went wrong");
       }
     }
 
@@ -81,14 +81,17 @@ export default function SignInPage() {
               </Link>
             </div>
             <div className="flex items-center space-x-8">
+              <Link href="/" className="text-gray-700 hover:text-blue-600">
+                Home
+              </Link>
               <Link href="/services" className="text-gray-700 hover:text-blue-600">
-                Servicios
+                Services
               </Link>
               <Link href="/shop" className="text-gray-700 hover:text-blue-600">
-                Tienda
+                Shop
               </Link>
               <Link href="/booking" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-                Reservar Cita
+                Book Now
               </Link>
             </div>
           </div>
@@ -99,7 +102,7 @@ export default function SignInPage() {
         <div className="max-w-md w-full space-y-8">
           <div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              {isLogin ? "Inicia sesión en tu cuenta" : "Crea tu cuenta"}
+              {isLogin ? "Sign in to your account" : "Create your account"}
             </h2>
           </div>
           <form className="mt-8 space-y-6 bg-white p-8 rounded-lg shadow-md" onSubmit={handleSubmit}>
@@ -113,7 +116,7 @@ export default function SignInPage() {
               {!isLogin && (
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                    Nombre Completo
+                    Full Name
                   </label>
                   <div className="mt-1 relative">
                     <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -125,7 +128,7 @@ export default function SignInPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="pl-10 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
-                      placeholder="Tu nombre completo"
+                      placeholder="Your full name"
                     />
                   </div>
                 </div>
@@ -133,7 +136,7 @@ export default function SignInPage() {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Correo Electrónico
+                  Email Address
                 </label>
                 <div className="mt-1 relative">
                   <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -146,14 +149,14 @@ export default function SignInPage() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="pl-10 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
-                    placeholder="Correo electrónico"
+                    placeholder="Email address"
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                  Contraseña
+                  Password
                 </label>
                 <div className="mt-1 relative">
                   <Lock className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
@@ -166,7 +169,7 @@ export default function SignInPage() {
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     className="pl-10 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10"
-                    placeholder="Contraseña"
+                    placeholder="Password"
                   />
                 </div>
               </div>
@@ -178,7 +181,7 @@ export default function SignInPage() {
                 disabled={loading}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {loading ? "Cargando..." : (isLogin ? "Iniciar Sesión" : "Registrarse")}
+                {loading ? "Loading..." : (isLogin ? "Sign In" : "Sign Up")}
               </button>
             </div>
 
@@ -188,7 +191,7 @@ export default function SignInPage() {
                 onClick={() => setIsLogin(!isLogin)}
                 className="text-blue-600 hover:text-blue-500"
               >
-                {isLogin ? "¿Necesitas una cuenta? Regístrate" : "¿Ya tienes cuenta? Inicia sesión"}
+                {isLogin ? "Need an account? Sign up" : "Already have an account? Sign in"}
               </button>
             </div>
           </form>

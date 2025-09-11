@@ -2,21 +2,22 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ShoppingCart, Search, Filter, Star } from "lucide-react";
+import { ShoppingCart, Search, Filter, Star, Plus, Minus, X } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 // Sample product data
 const products = [
   {
     id: "1",
-    name: "iPhone 13 Pro - Reacondicionado",
-    price: 699,
-    originalPrice: 999,
+    name: "iPhones Reacondicionados - Varios Modelos",
+    price: 599,
+    originalPrice: 899,
     category: "Teléfonos",
     condition: "Excelente",
-    image: "/api/placeholder/300/300",
+    image: "/images/products/4sale.png",
     rating: 4.8,
     reviews: 24,
-    description: "iPhone 13 Pro completamente reacondicionado en excelente condición. Incluye cargador y garantía de 90 días.",
+    description: "iPhones completamente reacondicionados en excelente condición. Varios modelos disponibles. Incluye cargador y garantía de 90 días.",
     inStock: true
   },
   {
@@ -47,16 +48,16 @@ const products = [
   },
   {
     id: "4",
-    name: "Consola PlayStation 5",
-    price: 399,
-    originalPrice: 499,
+    name: "PlayStation Reacondicionada",
+    price: 299,
+    originalPrice: 399,
     category: "Videojuegos",
-    condition: "Bueno",
-    image: "/api/placeholder/300/300",
+    condition: "Muy Bueno",
+    image: "/images/products/psrepair.png",
     rating: 4.6,
     reviews: 31,
-    description: "Consola PS5 en buenas condiciones de funcionamiento. Desgaste cosmético menor, completamente probada.",
-    inStock: false
+    description: "PlayStation completamente reacondicionada y probada. Funcionamiento perfecto, ligero desgaste cosmético.",
+    inStock: true
   },
   {
     id: "5",
@@ -93,7 +94,8 @@ export default function ShopPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todo");
   const [selectedCondition, setSelectedCondition] = useState("Todo");
-  const [cart, setCart] = useState<string[]>([]);
+  const [showCart, setShowCart] = useState(false);
+  const { items: cartItems, addToCart, removeFromCart, updateQuantity, getTotalItems, getTotalPrice } = useCart();
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -103,53 +105,187 @@ export default function ShopPage() {
     return matchesSearch && matchesCategory && matchesCondition;
   });
 
-  const addToCart = (productId: string) => {
-    setCart([...cart, productId]);
-    // TODO: Implement proper cart functionality
-    alert("¡Producto añadido al carrito!");
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      condition: product.condition
+    });
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Navigation */}
-      <nav className="bg-white shadow-md">
+      <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between h-20">
             <div className="flex items-center">
-              <Link href="/" className="text-2xl font-bold text-blue-600">
-                iRepair
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-10 h-10 rounded-xl overflow-hidden">
+                  <img 
+                    src="/images/gallery/logo.png" 
+                    alt="iRepair Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  iRepair
+                </span>
               </Link>
             </div>
             <div className="flex items-center space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600">
-                Inicio
-              </Link>
-              <Link href="/services" className="text-gray-700 hover:text-blue-600">
+              <Link href="/services" className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200">
                 Servicios
               </Link>
-              <Link href="/shop" className="text-gray-700 hover:text-blue-600">
+              <Link href="/shop" className="text-blue-600 font-semibold">
                 Tienda
               </Link>
-              <Link href="/booking" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+              <Link href="/booking" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                 Reservar Cita
               </Link>
               <div className="relative">
-                <ShoppingCart className="h-6 w-6 text-gray-700" />
-                {cart.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                    {cart.length}
-                  </span>
-                )}
+                <button
+                  onClick={() => setShowCart(!showCart)}
+                  className="bg-slate-100 hover:bg-slate-200 p-3 rounded-full transition-colors duration-200"
+                >
+                  <ShoppingCart className="h-6 w-6 text-slate-700" />
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-semibold animate-pulse">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </button>
               </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto py-8 px-4">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Electrónicos Reacondicionados de Calidad</h1>
-          <p className="text-lg text-gray-600">Probados, certificados y respaldados por nuestra garantía de 90 días</p>
+      {/* Shopping Cart Modal */}
+      {showCart && (
+        <div className="fixed inset-0 z-50 overflow-hidden">
+          {/* Backdrop with Background Image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/images/gallery/newx.png')",
+              backgroundBlendMode: "overlay",
+              backgroundColor: "rgba(0, 0, 0, 0.4)"
+            }}
+            onClick={() => setShowCart(false)}
+          />
+          
+          {/* Cart Panel - Right Side */}
+          <div className="absolute right-0 top-0 bottom-0 w-96 bg-white shadow-xl">
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b">
+                <h2 className="text-xl font-semibold text-gray-900">Carrito de Compras</h2>
+                <button 
+                  onClick={() => setShowCart(false)} 
+                  className="p-2 hover:bg-gray-100 rounded-full"
+                >
+                  <X className="h-6 w-6 text-gray-600" />
+                </button>
+              </div>
+              
+              {/* Content */}
+              {cartItems.length === 0 ? (
+                <div className="flex-1 flex items-center justify-center">
+                  <div className="text-center">
+                    <ShoppingCart className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <p className="text-gray-500">Tu carrito está vacío</p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* Items List */}
+                  <div className="flex-1 overflow-y-auto p-6">
+                    {cartItems.map((item) => (
+                      <div key={item.id} className="flex items-center gap-4 py-4 border-b">
+                        <div className="w-16 h-16 bg-gray-100 rounded-md overflow-hidden">
+                          <img 
+                            src={item.image || "/api/placeholder/64/64"} 
+                            alt={item.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-medium text-sm text-gray-900">{item.name}</h3>
+                          <p className="text-sm text-gray-600">{item.condition}</p>
+                          <p className="text-blue-600 font-semibold">${item.price}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            className="p-1 hover:bg-gray-100 rounded"
+                          >
+                            <Minus className="h-4 w-4" />
+                          </button>
+                          <span className="w-8 text-center">{item.quantity}</span>
+                          <button
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            className="p-1 hover:bg-gray-100 rounded"
+                          >
+                            <Plus className="h-4 w-4" />
+                          </button>
+                        </div>
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          className="p-1 hover:bg-red-100 rounded text-red-600"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Footer */}
+                  <div className="border-t p-6 space-y-4">
+                    <div className="flex justify-between text-lg font-semibold">
+                      <span>Total: </span>
+                      <span className="text-blue-600">${getTotalPrice()}</span>
+                    </div>
+                    <Link 
+                      href="/checkout"
+                      className="block w-full text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200"
+                      onClick={() => setShowCart(false)}
+                    >
+                      Proceder al Pago
+                    </Link>
+                    <button 
+                      onClick={() => setShowCart(false)}
+                      className="w-full border border-gray-300 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                    >
+                      Continuar Comprando
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="max-w-7xl mx-auto py-12 px-4">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-6">
+            NUESTRA TIENDA
+          </span>
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+            Electrónicos 
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Reacondicionados
+            </span>
+            <br />de Calidad
+          </h1>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Probados, certificados y respaldados por nuestra garantía de 90 días. 
+            <span className="font-semibold text-slate-900">Ahorra hasta 50%</span> comparado con productos nuevos.
+          </p>
         </div>
 
         {/* Search and Filters */}
@@ -203,8 +339,12 @@ export default function ShopPage() {
           {filteredProducts.map((product) => (
             <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
-                <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-500">Product Image</span>
+                <div className="w-full h-48 bg-gray-100 overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 <div className="absolute top-2 left-2">
                   <span className={`px-2 py-1 text-xs rounded-full ${
@@ -249,7 +389,7 @@ export default function ShopPage() {
                 </div>
 
                 <button
-                  onClick={() => addToCart(product.id)}
+                  onClick={() => handleAddToCart(product)}
                   disabled={!product.inStock}
                   className={`w-full py-2 px-4 rounded-md font-semibold transition-colors ${
                     product.inStock

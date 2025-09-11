@@ -110,20 +110,14 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-xl overflow-hidden">
-                  <img 
-                    src="/images/gallery/logo.png" 
-                    alt="iRepair Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-2xl font-bold text-blue-600">
-                  iRepair
-                </span>
+              <Link href="/" className="text-2xl font-bold text-blue-600">
+                iRepair
               </Link>
             </div>
             <div className="flex items-center space-x-8">
+              <Link href="/" className="text-gray-700 hover:text-blue-600">
+                Inicio
+              </Link>
               <Link href="/services" className="text-blue-600 font-medium">
                 Servicios
               </Link>
@@ -211,8 +205,8 @@ export default function ServicesPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Nuestro Proceso de Reparación</h2>
-            <p className="text-lg text-gray-600">Simple, transparente y profesional</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Repair Process</h2>
+            <p className="text-lg text-gray-600">Simple, transparent, and professional</p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8">
@@ -233,26 +227,26 @@ export default function ServicesPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Nuestras Garantías</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Guarantees</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <Shield className="mx-auto mb-4 text-green-600" size={48} />
-              <h3 className="text-xl font-semibold mb-3">Garantía de 90 Días</h3>
-              <p className="text-gray-600">Todas las reparaciones incluyen una garantía integral de 90 días para tu tranquilidad</p>
+              <h3 className="text-xl font-semibold mb-3">90-Day Warranty</h3>
+              <p className="text-gray-600">All repairs come with a comprehensive 90-day warranty for your peace of mind</p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <Star className="mx-auto mb-4 text-yellow-500" size={48} />
-              <h3 className="text-xl font-semibold mb-3">Piezas de Calidad</h3>
-              <p className="text-gray-600">Usamos solo piezas originales y de alta calidad para reparaciones duraderas</p>
+              <h3 className="text-xl font-semibold mb-3">Quality Parts</h3>
+              <p className="text-gray-600">We use only genuine and high-quality replacement parts for lasting repairs</p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <Clock className="mx-auto mb-4 text-blue-600" size={48} />
-              <h3 className="text-xl font-semibold mb-3">Servicio Rápido</h3>
-              <p className="text-gray-600">Mayoría de reparaciones completadas en 24-48 horas para que vuelvas a funcionar</p>
+              <h3 className="text-xl font-semibold mb-3">Fast Service</h3>
+              <p className="text-gray-600">Most repairs completed within 24-48 hours to get you back up and running</p>
             </div>
           </div>
         </div>
@@ -261,20 +255,20 @@ export default function ServicesPage() {
       {/* CTA Section */}
       <section className="bg-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">¿Listo para Reparar tu Dispositivo?</h2>
-          <p className="text-xl mb-8">Obtén una consulta gratuita y cotización hoy</p>
+          <h2 className="text-3xl font-bold mb-4">Ready to Fix Your Device?</h2>
+          <p className="text-xl mb-8">Get a free consultation and quote today</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/booking" 
               className="bg-white text-blue-600 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
             >
-              Reservar Consulta
+              Book Consultation
             </Link>
             <Link 
               href="/shop" 
               className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition-colors"
             >
-              Ver Productos
+              Browse Products
             </Link>
           </div>
         </div>
@@ -285,8 +279,8 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h3 className="text-2xl font-bold mb-4">iRepair</h3>
-            <p className="text-gray-400 mb-4">Reparación profesional de electrónicos y ventas</p>
-            <p className="text-gray-400">© 2024 iRepair. Todos los derechos reservados.</p>
+            <p className="text-gray-400 mb-4">Professional electronic repair and sales</p>
+            <p className="text-gray-400">© 2024 iRepair. All rights reserved.</p>
           </div>
         </div>
       </footer>
