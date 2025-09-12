@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 
 const prisma = new PrismaClient();
 
@@ -101,9 +102,10 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    const session = await getServerSession();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const session = await getServerSession(authOptions as any) as any;
     
-    if (!session) {
+    if (!session || !session.user) {
       return NextResponse.json(
         { message: "Unauthorized" },
         { status: 401 }
@@ -112,7 +114,7 @@ export async function GET() {
 
     const bookings = await prisma.booking.findMany({
       where: {
-        userId: (session.user).id
+        userId: session.user.id
       },
       include: {
         service: true,
