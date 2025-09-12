@@ -5,6 +5,20 @@ import Link from "next/link";
 import { ShoppingCart, Search, Filter, Star, Plus, Minus, X } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  originalPrice: number;
+  category: string;
+  condition: string;
+  image: string;
+  rating: number;
+  reviews: number;
+  description: string;
+  inStock: boolean;
+}
+
 // Sample product data
 const products = [
   {
@@ -105,7 +119,7 @@ export default function ShopPage() {
     return matchesSearch && matchesCategory && matchesCondition;
   });
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: Product) => {
     addToCart({
       id: product.id,
       name: product.name,
