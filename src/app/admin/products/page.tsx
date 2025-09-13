@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { supabase, uploadProductImage, deleteProductImage } from "@/lib/supabase";
+import { supabase, uploadProductImage } from "@/lib/supabase";
 import { 
   ArrowLeft, 
   Plus, 
@@ -14,7 +14,6 @@ import {
   Eye,
   Package,
   ShoppingCart,
-  Star,
   AlertCircle,
   Upload,
   X,

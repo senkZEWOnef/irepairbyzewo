@@ -160,7 +160,7 @@ export default function AdminCustomersPage() {
     return matchesStatus && matchesSearch;
   });
 
-  const viewCustomerDetails = (customer) => {
+  const viewCustomerDetails = (customer: { id: string; name: string; email: string; phone: string; totalOrders: number; totalSpent: number; joinDate: string; rating: number; orders: any[]; services: any[]; notes: string; address: string }) => {
     setSelectedCustomer(customer);
     setShowCustomerDetails(true);
   };

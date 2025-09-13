@@ -26,7 +26,7 @@ export const STORAGE_BUCKET = 'product-images'
 
 // Helper function to upload images
 export async function uploadProductImage(file: File, fileName: string) {
-  const { data, error } = await supabase.storage
+  const { error } = await supabase.storage
     .from(STORAGE_BUCKET)
     .upload(fileName, file)
     
