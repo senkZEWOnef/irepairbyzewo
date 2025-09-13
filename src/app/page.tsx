@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Smartphone, Laptop, Wrench, ShoppingBag, Calendar, Star, Zap, Shield, Clock } from "lucide-react";
+import { Smartphone, Laptop, Wrench, ShoppingBag, Calendar, Star, Zap, Shield, Clock, Settings } from "lucide-react";
 
 export default function Home() {
   return (
@@ -34,6 +34,9 @@ export default function Home() {
               <Link href="/booking" className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 ring-2 ring-cyan-400/20 hover:ring-cyan-300/40">
                 Reservar Cita
               </Link>
+              <Link href="/admin/dashboard" className="opacity-30 hover:opacity-100 transition-opacity duration-300 p-2 rounded-full hover:bg-slate-800/50" title="Admin Access">
+                <Settings className="w-5 h-5 text-slate-400 hover:text-cyan-300" />
+              </Link>
             </div>
 
             {/* Mobile Navigation */}
@@ -46,6 +49,9 @@ export default function Home() {
               </Link>
               <Link href="/booking" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-bold text-xs transition-all duration-300">
                 Reservar
+              </Link>
+              <Link href="/admin/dashboard" className="opacity-30 hover:opacity-100 transition-opacity duration-300 p-1 rounded-full hover:bg-slate-800/50" title="Admin">
+                <Settings className="w-4 h-4 text-slate-400 hover:text-cyan-300" />
               </Link>
             </div>
           </div>

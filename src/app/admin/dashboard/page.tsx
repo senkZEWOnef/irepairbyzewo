@@ -126,11 +126,18 @@ export default function AdminDashboardPage() {
       color: "from-green-600 to-green-700"
     },
     {
-      title: "Configuración",
-      description: "Ajustes de la tienda y preferencias",
-      icon: Settings,
-      href: "/admin/settings",
-      color: "from-gray-600 to-gray-700"
+      title: "Clientes",
+      description: "Ver y gestionar información de clientes",
+      icon: Users,
+      href: "/admin/customers",
+      color: "from-teal-600 to-teal-700"
+    },
+    {
+      title: "Analytics",
+      description: "Ver reportes y estadísticas de ventas",
+      icon: BarChart3,
+      href: "/admin/analytics",
+      color: "from-indigo-600 to-indigo-700"
     }
   ];
 
@@ -213,7 +220,7 @@ export default function AdminDashboardPage() {
         {/* Quick Actions */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Acciones Rápidas</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
             {quickActions.map((action, index) => (
               <Link
                 key={index}
