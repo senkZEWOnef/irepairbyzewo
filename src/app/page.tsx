@@ -7,30 +7,45 @@ export default function Home() {
       {/* Navigation */}
       <nav className="bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
+          <div className="flex justify-between items-center h-16 md:h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-3 group">
-                <div className="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-400 transition-all duration-300">
+              <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-400 transition-all duration-300">
                   <img 
                     src="/images/gallery/logo.png" 
                     alt="iRepair Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="text-3xl font-black bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
+                <span className="text-xl md:text-3xl font-black bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
                   iRepair
                 </span>
               </Link>
             </div>
-            <div className="flex items-center space-x-8">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
               <Link href="/services" className="text-slate-200 hover:text-cyan-300 font-semibold text-lg transition-all duration-300 hover:drop-shadow-lg relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-300 hover:after:w-full after:transition-all after:duration-300">
                 Servicios
               </Link>
               <Link href="/shop" className="text-slate-200 hover:text-cyan-300 font-semibold text-lg transition-all duration-300 hover:drop-shadow-lg relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-300 hover:after:w-full after:transition-all after:duration-300">
                 Tienda
               </Link>
-              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-8 py-3 rounded-full font-bold text-lg hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 ring-2 ring-cyan-400/20 hover:ring-cyan-300/40">
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 ring-2 ring-cyan-400/20 hover:ring-cyan-300/40">
                 Reservar Cita
+              </Link>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center space-x-3">
+              <Link href="/services" className="text-slate-200 hover:text-cyan-300 font-medium text-sm transition-colors">
+                Servicios
+              </Link>
+              <Link href="/shop" className="text-slate-200 hover:text-cyan-300 font-medium text-sm transition-colors">
+                Tienda
+              </Link>
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-bold text-xs transition-all duration-300">
+                Reservar
               </Link>
             </div>
           </div>
@@ -38,69 +53,71 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 md:py-24 overflow-hidden min-h-[80vh] flex items-center">
         {/* Background image with overlay */}
         <div className="absolute inset-0">
           <img 
             src="/images/store/local.png" 
             alt="iRepair Store" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-center"
           />
           {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-purple-900/70 to-indigo-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/85 via-purple-900/75 to-indigo-900/85"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white">
-            <div className="mb-8">
-              <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium mb-6 border border-white/20 text-white drop-shadow-lg">
+            <div className="mb-6 md:mb-8">
+              <span className="inline-block px-3 md:px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full text-xs md:text-sm font-medium mb-4 md:mb-6 border border-white/30 text-white drop-shadow-lg">
                 ✨ Expertos en Reparación Electrónica
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white drop-shadow-2xl">
-              Reparación 
-              <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent drop-shadow-xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 leading-tight text-white drop-shadow-2xl">
+              <span className="block">Reparación</span>
+              <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent drop-shadow-xl block">
                 Profesional
               </span>
-              <br />de Electrónicos
+              <span className="block">de Electrónicos</span>
             </h1>
             
-            <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-white leading-relaxed drop-shadow-lg">
-              Servicios expertos de reparación para teléfonos, laptops y más. 
-              <span className="text-yellow-200 font-semibold">Electrónicos reacondicionados de calidad</span> a la venta.
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 md:mb-12 max-w-4xl mx-auto text-white leading-relaxed drop-shadow-lg px-4">
+              <span className="block mb-2">Servicios expertos de reparación para teléfonos, laptops y más.</span>
+              <span className="text-yellow-200 font-semibold">Electrónicos reacondicionados de calidad a la venta.</span>
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-8 md:mb-16 px-4">
               <Link 
                 href="/booking" 
-                className="group bg-white text-slate-900 px-8 py-4 rounded-full font-semibold hover:bg-slate-50 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center"
+                className="group bg-white text-slate-900 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-slate-50 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center text-sm md:text-base"
               >
-                <Calendar className="mr-3 group-hover:rotate-12 transition-transform duration-300" size={24} />
-                Reservar Consulta Gratis
+                <Calendar className="mr-2 md:mr-3 group-hover:rotate-12 transition-transform duration-300" size={20} />
+                <span className="hidden sm:inline">Reservar Consulta Gratis</span>
+                <span className="sm:hidden">Consulta Gratis</span>
               </Link>
               <Link 
                 href="/shop" 
-                className="group border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center"
+                className="group border-2 border-white/30 bg-white/10 backdrop-blur-sm text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center text-sm md:text-base"
               >
-                <ShoppingBag className="mr-3 group-hover:scale-110 transition-transform duration-300" size={24} />
-                Explorar Productos
+                <ShoppingBag className="mr-2 md:mr-3 group-hover:scale-110 transition-transform duration-300" size={20} />
+                <span className="hidden sm:inline">Explorar Productos</span>
+                <span className="sm:hidden">Ver Tienda</span>
               </Link>
             </div>
             
             {/* Trust badges */}
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
+            <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 opacity-80 text-center px-4">
               <div className="flex items-center space-x-2">
-                <Shield className="w-5 h-5" />
-                <span className="text-sm font-medium">Garantía 90 Días</span>
+                <Shield className="w-4 h-4 md:w-5 md:h-5" />
+                <span className="text-xs md:text-sm font-medium">Garantía 90 Días</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Zap className="w-5 h-5" />
-                <span className="text-sm font-medium">Servicio Rápido</span>
+                <Zap className="w-4 h-4 md:w-5 md:h-5" />
+                <span className="text-xs md:text-sm font-medium">Servicio Rápido</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Star className="w-5 h-5 fill-current" />
-                <span className="text-sm font-medium">Técnicos Certificados</span>
+                <Star className="w-4 h-4 md:w-5 md:h-5 fill-current" />
+                <span className="text-xs md:text-sm font-medium">Técnicos Certificados</span>
               </div>
             </div>
           </div>

@@ -168,7 +168,7 @@ export default function ProductDetail() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 p-4 md:p-8">
             
             {/* Product Images */}
             <div className="space-y-4">
@@ -182,12 +182,12 @@ export default function ProductDetail() {
               </div>
               
               {/* Image Thumbnails */}
-              <div className="flex space-x-3">
+              <div className="flex space-x-2 md:space-x-3 overflow-x-auto pb-2">
                 {product.images.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                    className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all ${
                       selectedImage === index 
                         ? 'border-blue-500 ring-2 ring-blue-200' 
                         : 'border-slate-200 hover:border-slate-300'
@@ -217,7 +217,7 @@ export default function ProductDetail() {
               </div>
 
               {/* Product Name */}
-              <h1 className="text-3xl lg:text-4xl font-bold text-slate-900">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">
                 {product.name}
               </h1>
 
@@ -243,18 +243,18 @@ export default function ProductDetail() {
 
               {/* Pricing */}
               <div className="space-y-2">
-                <div className="flex items-center space-x-3">
-                  <span className="text-4xl font-bold text-slate-900">
+                <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                  <span className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">
                     ${product.price}
                   </span>
-                  <span className="text-2xl text-slate-500 line-through">
+                  <span className="text-lg md:text-xl lg:text-2xl text-slate-500 line-through">
                     ${product.originalPrice}
                   </span>
-                  <span className="px-2 py-1 bg-red-100 text-red-800 rounded-md text-sm font-bold">
+                  <span className="px-2 py-1 bg-red-100 text-red-800 rounded-md text-xs md:text-sm font-bold">
                     -{discountPercentage}%
                   </span>
                 </div>
-                <p className="text-slate-600">
+                <p className="text-sm md:text-base text-slate-600">
                   Ahorras ${product.originalPrice - product.price}
                 </p>
               </div>
