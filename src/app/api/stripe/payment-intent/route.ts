@@ -3,6 +3,14 @@ import { stripe } from "@/lib/stripe";
 
 export async function POST(req: NextRequest) {
   try {
+    // Check if Stripe is properly configured
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { message: "Payment processing is not configured" },
+        { status: 503 }
+      );
+    }
+
     const { amount, currency = "usd", productIds } = await req.json();
 
     if (!amount || amount <= 0) {
@@ -35,6 +43,14 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    // Check if Stripe is properly configured
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { message: "Payment processing is not configured" },
+        { status: 503 }
+      );
+    }
+
     const { searchParams } = new URL(req.url);
     const paymentIntentId = searchParams.get("payment_intent_id");
 
