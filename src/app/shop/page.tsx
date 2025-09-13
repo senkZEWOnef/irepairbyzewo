@@ -351,15 +351,16 @@ export default function ShopPage() {
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="relative">
-                <div className="w-full h-48 bg-gray-100 overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+              <Link href={`/shop/${product.id}`}>
+                <div className="relative cursor-pointer">
+                  <div className="w-full h-48 bg-gray-100 overflow-hidden">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                 <div className="absolute top-2 left-2">
                   <span className={`px-2 py-1 text-xs rounded-full ${
                     product.condition === "Like New" ? "bg-green-100 text-green-800" :
@@ -375,35 +376,39 @@ export default function ShopPage() {
                     <span className="text-white font-semibold">Out of Stock</span>
                   </div>
                 )}
-              </div>
+                </div>
+              </Link>
 
               <div className="p-4">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-lg text-gray-900 flex-1">{product.name}</h3>
-                </div>
-
-                <div className="flex items-center mb-2">
-                  <div className="flex items-center">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+                <Link href={`/shop/${product.id}`} className="block mb-4 hover:text-blue-600 transition-colors">
+                  <h3 className="font-semibold text-lg text-gray-900 mb-2">{product.name}</h3>
+                  
+                  <div className="flex items-center mb-2">
+                    <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                      <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+                    </div>
+                    <span className="ml-2 text-sm text-gray-500">({product.reviews} reviews)</span>
                   </div>
-                  <span className="ml-2 text-sm text-gray-500">({product.reviews} reviews)</span>
-                </div>
 
-                <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
+                  <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
 
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <span className="text-2xl font-bold text-blue-600">${product.price}</span>
-                    <span className="ml-2 text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-blue-600">${product.price}</span>
+                      <span className="ml-2 text-sm text-gray-500 line-through">${product.originalPrice}</span>
+                    </div>
+                    <span className="text-sm text-green-600 font-medium">
+                      Ahorras ${product.originalPrice - product.price}
+                    </span>
                   </div>
-                  <span className="text-sm text-green-600 font-medium">
-                    Ahorras ${product.originalPrice - product.price}
-                  </span>
-                </div>
+                </Link>
 
                 <button
-                  onClick={() => handleAddToCart(product)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddToCart(product);
+                  }}
                   disabled={!product.inStock}
                   className={`w-full py-2 px-4 rounded-md font-semibold transition-colors ${
                     product.inStock
