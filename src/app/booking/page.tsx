@@ -64,59 +64,74 @@ export default function BookingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-50">
+      <nav className="bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
+          <div className="flex justify-between items-center h-16 md:h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-10 h-10 rounded-xl overflow-hidden">
+              <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-400 transition-all duration-300">
                   <img 
                     src="/images/gallery/logo.png" 
                     alt="iRepair Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-xl md:text-3xl font-black bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
                   iRepair
                 </span>
               </Link>
             </div>
-            <div className="flex items-center space-x-8">
-              <Link href="/services" className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/services" className="text-slate-200 hover:text-cyan-300 font-semibold text-lg transition-all duration-300 hover:drop-shadow-lg relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-300 hover:after:w-full after:transition-all after:duration-300">
                 Servicios
               </Link>
-              <Link href="/shop" className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200">
+              <Link href="/shop" className="text-slate-200 hover:text-cyan-300 font-semibold text-lg transition-all duration-300 hover:drop-shadow-lg relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-300 hover:after:w-full after:transition-all after:duration-300">
                 Tienda
               </Link>
-              <Link href="/booking" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 ring-2 ring-cyan-400/20 hover:ring-cyan-300/40">
                 Reservar Cita
+              </Link>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center space-x-3">
+              <Link href="/services" className="text-slate-200 hover:text-cyan-300 font-medium text-sm transition-colors">
+                Servicios
+              </Link>
+              <Link href="/shop" className="text-slate-200 hover:text-cyan-300 font-medium text-sm transition-colors">
+                Tienda
+              </Link>
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-bold text-xs transition-all duration-300">
+                Reservar
               </Link>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto py-12 px-4">
-        <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-6">
+      <div className="max-w-6xl mx-auto py-6 md:py-12 px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 md:mb-12 px-2">
+          <span className="inline-block px-3 md:px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-xs md:text-sm font-semibold mb-4 md:mb-6">
             SISTEMA DE CITAS
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
             Reserva tu 
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Cita
             </span>
           </h1>
-          <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-slate-600 mb-8 md:mb-12 max-w-2xl mx-auto px-4">
             Sigue estos simples pasos para reservar tu consulta gratuita
           </p>
           
           {/* Progress Steps */}
-          <div className="flex justify-center mb-12">
-            <div className="flex items-center bg-white rounded-2xl p-6 shadow-lg border border-slate-100">
+          <div className="flex justify-center mb-8 md:mb-12 px-2">
+            <div className="flex items-center bg-white rounded-xl md:rounded-2xl p-3 md:p-6 shadow-lg border border-slate-100 overflow-x-auto">
               {[1, 2, 3, 4].map((num) => (
                 <div key={num} className="flex items-center">
-                  <div className={`relative w-12 h-12 rounded-2xl flex items-center justify-center font-semibold transition-all duration-300 ${
+                  <div className={`relative w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center font-semibold text-sm md:text-base transition-all duration-300 ${
                     step >= num 
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg" 
                       : step === num - 1
@@ -128,7 +143,7 @@ export default function BookingPage() {
                       <div className="absolute inset-0 rounded-2xl animate-pulse-glow"></div>
                     )}
                   </div>
-                  {num < 4 && <div className={`w-16 h-1 mx-2 rounded-full transition-all duration-500 ${
+                  {num < 4 && <div className={`w-8 md:w-16 h-1 mx-1 md:mx-2 rounded-full transition-all duration-500 ${
                     step > num ? "bg-gradient-to-r from-blue-600 to-purple-600" : "bg-slate-200"
                   }`} />}
                 </div>
@@ -139,39 +154,39 @@ export default function BookingPage() {
 
         {/* Step 1: Service Selection */}
         {step === 1 && (
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-white" />
+          <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 border border-slate-100 mx-2 md:mx-0">
+            <div className="text-center mb-6 md:mb-8">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <Calendar className="w-6 h-6 md:w-8 md:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-4 text-slate-900">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-slate-900">
                 Selecciona un Servicio
               </h2>
-              <p className="text-slate-600">Elige el tipo de reparación que necesitas</p>
+              <p className="text-slate-600 text-sm md:text-base">Elige el tipo de reparación que necesitas</p>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {services.map((service) => (
                 <div
                   key={service.id}
                   onClick={() => handleServiceSelect(service.id)}
-                  className="group relative bg-gradient-to-br from-white to-slate-50 border-2 border-slate-100 rounded-2xl p-6 cursor-pointer hover:border-blue-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover-lift"
+                  className="group relative bg-gradient-to-br from-white to-slate-50 border-2 border-slate-100 rounded-xl md:rounded-2xl p-4 md:p-6 cursor-pointer hover:border-blue-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover-lift"
                 >
-                  <div className="absolute top-4 right-4 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors duration-300">
-                    <Clock className="w-4 h-4 text-blue-600" />
+                  <div className="absolute top-3 right-3 md:top-4 md:right-4 w-6 h-6 md:w-8 md:h-8 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors duration-300">
+                    <Clock className="w-3 h-3 md:w-4 md:h-4 text-blue-600" />
                   </div>
                   
                   <div className="mb-4">
-                    <h3 className="font-bold text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300">{service.name}</h3>
-                    <p className="text-slate-600 text-sm mb-3">Duración: {service.duration} minutos</p>
+                    <h3 className="font-bold text-lg md:text-xl text-slate-900 mb-2 group-hover:text-blue-600 transition-colors duration-300 pr-8">{service.name}</h3>
+                    <p className="text-slate-600 text-xs md:text-sm mb-3">Duración: {service.duration} minutos</p>
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <p className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <p className="text-xl md:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                       {service.price === 0 ? "Gratis" : `Desde $${service.price}`}
                     </p>
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <span className="text-white text-sm">→</span>
+                    <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <span className="text-white text-xs md:text-sm">→</span>
                     </div>
                   </div>
                   
@@ -184,22 +199,22 @@ export default function BookingPage() {
 
         {/* Step 2: Date Selection */}
         {step === 2 && (
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-white" />
+          <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 border border-slate-100 mx-2 md:mx-0">
+            <div className="text-center mb-6 md:mb-8">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <Calendar className="w-6 h-6 md:w-8 md:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-4 text-slate-900">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-slate-900">
                 Selecciona la Fecha
               </h2>
-              <div className="bg-blue-50 rounded-2xl p-4 mb-6">
-                <p className="text-slate-700">
+              <div className="bg-blue-50 rounded-xl md:rounded-2xl p-3 md:p-4 mb-4 md:mb-6 mx-2">
+                <p className="text-slate-700 text-sm md:text-base">
                   Servicio: <span className="font-bold text-blue-600">{selectedService?.name}</span>
                 </p>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4 mb-6 md:mb-8 px-2">
               {Array.from({ length: 14 }, (_, i) => {
                 const date = new Date();
                 date.setDate(date.getDate() + i + 1);
@@ -213,14 +228,14 @@ export default function BookingPage() {
                     key={i}
                     onClick={() => !isWeekend && handleDateSelect(dateStr)}
                     disabled={isWeekend}
-                    className={`group relative p-4 rounded-2xl text-center transition-all duration-300 ${
+                    className={`group relative p-2 md:p-4 rounded-xl md:rounded-2xl text-center transition-all duration-300 ${
                       isWeekend 
                         ? "bg-slate-100 text-slate-400 cursor-not-allowed"
                         : "bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 hover:border-green-300 hover:shadow-lg transform hover:-translate-y-1 hover-lift cursor-pointer"
                     }`}
                   >
-                    <div className="text-sm font-medium text-slate-600 mb-1">{dayName}</div>
-                    <div className="text-2xl font-bold text-slate-900 mb-1">{date.getDate()}</div>
+                    <div className="text-xs md:text-sm font-medium text-slate-600 mb-1">{dayName}</div>
+                    <div className="text-lg md:text-2xl font-bold text-slate-900 mb-1">{date.getDate()}</div>
                     <div className="text-xs text-slate-500">{monthName}</div>
                     
                     {!isWeekend && (
@@ -248,29 +263,29 @@ export default function BookingPage() {
 
         {/* Step 3: Time Selection */}
         {step === 3 && (
-          <div className="bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-white" />
+          <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl p-4 md:p-8 border border-slate-100 mx-2 md:mx-0">
+            <div className="text-center mb-6 md:mb-8">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <Clock className="w-6 h-6 md:w-8 md:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold mb-4 text-slate-900">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-slate-900">
                 Selecciona la Hora
               </h2>
-              <div className="bg-purple-50 rounded-2xl p-4 mb-6">
-                <p className="text-slate-700">
+              <div className="bg-purple-50 rounded-xl md:rounded-2xl p-3 md:p-4 mb-4 md:mb-6 mx-2">
+                <p className="text-slate-700 text-sm md:text-base">
                   Fecha: <span className="font-bold text-purple-600">{new Date(formData.date).toLocaleDateString('es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
                 </p>
               </div>
             </div>
             
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 mb-6 md:mb-8 px-2">
               {timeSlots.map((time) => (
                 <button
                   key={time}
                   onClick={() => handleTimeSelect(time)}
-                  className="group relative bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 rounded-2xl p-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover-lift"
+                  className="group relative bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 rounded-xl md:rounded-2xl p-3 md:p-4 hover:border-purple-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover-lift"
                 >
-                  <div className="text-lg font-bold text-slate-900 group-hover:text-purple-600 transition-colors duration-300">
+                  <div className="text-base md:text-lg font-bold text-slate-900 group-hover:text-purple-600 transition-colors duration-300">
                     {time}
                   </div>
                   <div className="text-xs text-slate-500 mt-1">
@@ -358,7 +373,7 @@ export default function BookingPage() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200"
+                      className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 border-2 border-slate-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 text-sm md:text-base"
                       placeholder="Tu nombre completo"
                     />
                   </div>
@@ -375,7 +390,7 @@ export default function BookingPage() {
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200"
+                      className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 border-2 border-slate-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 text-sm md:text-base"
                       placeholder="(787) 123-4567"
                     />
                   </div>
@@ -409,17 +424,17 @@ export default function BookingPage() {
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     rows={4}
-                    className="w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 resize-none"
+                    className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-4 border-2 border-slate-200 rounded-xl md:rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 resize-none text-sm md:text-base"
                     placeholder="Describe el problema de tu dispositivo o cualquier solicitud específica..."
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row justify-between items-center pt-6 gap-4">
+              <div className="flex flex-col sm:flex-row justify-between items-center pt-4 md:pt-6 gap-3 md:gap-4">
                 <button
                   type="button"
                   onClick={() => setStep(3)}
-                  className="flex items-center space-x-2 text-slate-600 hover:text-blue-600 transition-colors duration-200"
+                  className="flex items-center space-x-2 text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm md:text-base"
                 >
                   <span>←</span>
                   <span>Volver a Hora</span>
@@ -428,7 +443,7 @@ export default function BookingPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
+                  className={`group relative bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 md:px-10 py-3 md:py-4 rounded-xl md:rounded-2xl font-bold text-base md:text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none w-full sm:w-auto ${
                     isSubmitting ? 'animate-pulse' : 'hover:from-blue-700 hover:to-purple-700'
                   }`}
                 >

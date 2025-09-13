@@ -106,32 +106,47 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="bg-white shadow-md">
+      <nav className="bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between items-center h-16 md:h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-xl overflow-hidden">
+              <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-400 transition-all duration-300">
                   <img 
                     src="/images/gallery/logo.png" 
                     alt="iRepair Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="text-2xl font-bold text-blue-600">
+                <span className="text-xl md:text-3xl font-black bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
                   iRepair
                 </span>
               </Link>
             </div>
-            <div className="flex items-center space-x-8">
-              <Link href="/services" className="text-blue-600 font-medium">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/services" className="text-cyan-300 font-semibold text-lg relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-cyan-300">
                 Servicios
               </Link>
-              <Link href="/shop" className="text-gray-700 hover:text-blue-600">
+              <Link href="/shop" className="text-slate-200 hover:text-cyan-300 font-semibold text-lg transition-all duration-300 hover:drop-shadow-lg relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-300 hover:after:w-full after:transition-all after:duration-300">
                 Tienda
               </Link>
-              <Link href="/booking" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 ring-2 ring-cyan-400/20 hover:ring-cyan-300/40">
                 Reservar Cita
+              </Link>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center space-x-3">
+              <Link href="/services" className="text-cyan-300 font-medium text-sm">
+                Servicios
+              </Link>
+              <Link href="/shop" className="text-slate-200 hover:text-cyan-300 font-medium text-sm transition-colors">
+                Tienda
+              </Link>
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-bold text-xs transition-all duration-300">
+                Reservar
               </Link>
             </div>
           </div>

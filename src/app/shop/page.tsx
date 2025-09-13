@@ -133,41 +133,69 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200/50 sticky top-0 z-50">
+      <nav className="bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50 sticky top-0 z-50 shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20">
+          <div className="flex justify-between items-center h-16 md:h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-10 h-10 rounded-xl overflow-hidden">
+              <Link href="/" className="flex items-center space-x-2 md:space-x-3 group">
+                <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl overflow-hidden ring-2 ring-blue-500/30 group-hover:ring-blue-400 transition-all duration-300">
                   <img 
                     src="/images/gallery/logo.png" 
                     alt="iRepair Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-xl md:text-3xl font-black bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
                   iRepair
                 </span>
               </Link>
             </div>
-            <div className="flex items-center space-x-8">
-              <Link href="/services" className="text-slate-700 hover:text-blue-600 font-medium transition-colors duration-200">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <Link href="/services" className="text-slate-200 hover:text-cyan-300 font-semibold text-lg transition-all duration-300 hover:drop-shadow-lg relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-cyan-300 hover:after:w-full after:transition-all after:duration-300">
                 Servicios
               </Link>
-              <Link href="/shop" className="text-blue-600 font-semibold">
+              <Link href="/shop" className="text-cyan-300 font-semibold text-lg relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-cyan-300">
                 Tienda
               </Link>
-              <Link href="/booking" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:from-cyan-400 hover:via-blue-400 hover:to-purple-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 ring-2 ring-cyan-400/20 hover:ring-cyan-300/40">
                 Reservar Cita
               </Link>
               <div className="relative">
                 <button
                   onClick={() => setShowCart(!showCart)}
-                  className="bg-slate-100 hover:bg-slate-200 p-3 rounded-full transition-colors duration-200"
+                  className="bg-slate-700 hover:bg-slate-600 p-3 rounded-full transition-colors duration-200"
                 >
-                  <ShoppingCart className="h-6 w-6 text-slate-700" />
+                  <ShoppingCart className="h-6 w-6 text-slate-200" />
                   {getTotalItems() > 0 && (
                     <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-6 w-6 flex items-center justify-center font-semibold animate-pulse">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="md:hidden flex items-center space-x-3">
+              <Link href="/services" className="text-slate-200 hover:text-cyan-300 font-medium text-sm transition-colors">
+                Servicios
+              </Link>
+              <Link href="/shop" className="text-cyan-300 font-medium text-sm">
+                Tienda
+              </Link>
+              <Link href="/booking" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-3 py-2 rounded-full font-bold text-xs transition-all duration-300">
+                Reservar
+              </Link>
+              <div className="relative">
+                <button
+                  onClick={() => setShowCart(!showCart)}
+                  className="bg-slate-700 hover:bg-slate-600 p-2 rounded-full transition-colors duration-200"
+                >
+                  <ShoppingCart className="h-5 w-5 text-slate-200" />
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-semibold animate-pulse text-xs">
                       {getTotalItems()}
                     </span>
                   )}
@@ -284,7 +312,7 @@ export default function ShopPage() {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto py-12 px-4">
+      <div className="max-w-7xl mx-auto py-6 md:py-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-6">
             NUESTRA TIENDA
